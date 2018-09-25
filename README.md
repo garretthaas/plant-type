@@ -17,7 +17,7 @@ $font-sizes: ( // from sketch app font "Size" property
 );
 $line-heights: ( // from sketch app "Line" spacing property
     'p'       : ( 21 ),
-    'leadin'  : ( 35 ),
+    'leadin'  : ( 45 ),
     'info'    : ( q  ),
 );
 ```
