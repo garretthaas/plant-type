@@ -32,15 +32,15 @@ p.leadin {
 ```
 ( i ): the first argument references a `$font-size` variable and the second argument references a `$line-height` variable reclared in the mixin.
 
-( i ): these can be anything you assign in the mixin variables...I created matching variable names becuase that makes sense to me `@include typography(foo,bar);`, `@include typography(foo,foo);`, `@include typography(bar,bar);`
+( i ): these can be anything you assign in the mixin variables...I created matching variable names becuase that makes sense to me `@include typography(foo,foo);`, `@include typography(bar,bar);`, `@include typography(foo,bar);`
 
 ### inherit line height needed
 ``` scss
 span.info {
-  @include typography(info,n);
+  @include typography(info,inherit);
 }
 ```
-( i ): If `line-height:inherit;`
+( i ): If `line-height:inherit;` is desired just fill any character in the arg that is not a declared variable.
 
 ## Output
 ```scss
