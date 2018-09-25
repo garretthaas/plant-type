@@ -1,0 +1,365 @@
+// typography
+
+// helpers
+
+// @author = Garrett Haas unless otherwise stated.
+   
+
+/* Table of Contents
+
+   1. Imports
+   - 1.a Typography
+
+   2. Variables
+   - 2.a Colors
+   - 2.b Typography
+   - 2.c Details
+
+   3. Mixins
+   - 3.a Typography
+
+   4. Styles
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+   1. Imports
+   ========================================================================== */
+
+/* 1.a Typography 
+   -------------------------------------------------------------------------- */
+@import url("https://use.typekit.net/nsg8wna.css");
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700');
+
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+   2. Variables
+   ========================================================================== */
+
+/* 2.a Colors 
+   -------------------------------------------------------------------------- */
+$main-color: #B72B18;
+$bg-color: #F8F3F2;
+
+/* 2.b Typography 
+   -------------------------------------------------------------------------- */
+$main-font:     sans-serif;
+$longform-font:   serif;
+$detail-font:     sans-serif;
+$mono-font:       monospace;
+$base-font-size:  10;
+$gutter: $base-font-size * 3 / $base-font-size * 1rem;
+
+
+/* 2.c Details 
+   -------------------------------------------------------------------------- */
+$border-radius: 0.3rem;
+
+
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+   3. Mixins
+   ========================================================================== */
+
+/* 3.a Typography 
+   -------------------------------------------------------------------------- */
+  $base-font-size:  10; // base font size in pixels
+  $font-sizes: ( // in pixels
+    'p'       : ( 21 ),
+    'leadin'  : ( 35 ),
+    'h1'      : ( 35 ),
+    'h2'      : ( 25 ),
+    'h3'      : ( 21 ),
+    'h4'      : ( 21 ),
+    'h5'      : ( 21 ),
+    'h6'      : ( 21 ),
+    'txtlist' : ( 16 ),
+    'sbjlist' : ( 25 ),
+    'info'    : ( 16 ),
+    'mono'    : ( 16 ),
+    'nav'     : ( 16 ),
+    'button'  : ( 16 ),
+    'address' : ( 16 ) 
+  ) !default;
+  $line-heights: ( // in pixels
+    'p'       : ( 29 ),
+    'leadin'  : ( 45 ),
+    'h1'      : ( 40 ),
+    'h2'      : ( 30 ),
+    'h3'      : ( 26 ),
+    'h4'      : ( 26 ),
+    'h5'      : ( 26 ),
+    'h6'      : ( 26 ),
+    'txtlist' : ( 21 ),
+    'sbjlist' : ( 36 ),
+    'info'    : ( q  ), // if the line-height needs to be inherit make it "q" in the variable, then use any character besides "q" when you @include this mixin in your scss
+    'mono'    : ( 21 ),
+    'nav'     : ( 16 ),
+    'button'  : ( q ),
+    'address' : ( 21 )
+  ) !default;
+  @mixin typography($font-size, $line-height) {
+    $fs-a: map-get($font-sizes, $font-size); // equals absoute font size
+    $fs-r: $fs-a / $base-font-size * 1rem; // equals relative font size in rems
+    font-size: $fs-r; // declaring font size
+    @if map-get($line-heights, $line-height) { // the value for line height in the mixin equals one of the declared vars in $line-heights
+      $lh-a: map-get($line-heights, $line-height); // equals absolute line height
+      $lh-r: $lh-a / $fs-a; // equals relative line-height
+      $ph-r: $lh-r * 1rem; // equals relative paragraph height
+      line-height: $lh-r; // declaring line height
+      & + * {
+        margin: 0 0 $ph-r * 2 0; // declaring paragraph height
+      }
+    }
+    @else { // the value for line height in the mixin does not match one of the declared vars in $line-heights
+      line-height: inherit; // inherit line-height from parent
+      & + * {
+        margin: 0 0 $base-font-size * 3 / $base-font-size * 1rem; // declaring generic paragraph height
+      }
+    }
+    
+  }
+
+/* Usage example 
+  -----------------------------------------------------------------------------
+
+    default usage
+    --------------------------------------
+      p {
+        @include typography(p,p);
+      }
+      p.leadin {
+        @include typography(leadin,leadin);
+      }
+
+    inherit line height needed
+    --------------------------------------
+      p {
+        @include typography(info,n);
+      }
+
+  -----------------------------------------------------------------------------
+
+  (i): the first p references the declared $font-sizes, and the second p references the declared $line-heighs
+
+  */
+
+/* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+   4. Styles
+   ========================================================================== */
+
+/* Element Selectors 
+   ----------------------------------------------------------------------------- */
+
+html {
+	font-family: $main-font;
+	font-size: $base-font-size - 2 * 1px;
+	@include respond-to(small) {
+		font-size: $base-font-size - 1.25 * 1px;
+	}
+	@include respond-to(medium) {
+		font-size: $base-font-size * 1px;
+	}
+}
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+	font-weight: initial;
+	font-family: $main-font;
+}
+h1 {
+	font-family: $main-font;
+	@include typography(h1,h1);
+
+	&.branding {
+		@include typography(nav,nav);
+		margin: 0;
+	}
+}
+h2 {
+	@include typography(h2,h2);
+}
+h3 {
+	@include typography(h3,h3); 
+}
+h4 {
+	@include typography(h4,h4);
+}
+h5 {
+	@include typography(h5,h5);
+}
+h6 {
+	@include typography(h6,h6);
+}
+p {
+	font-family: $longform-font;
+	@include typography(p,p);
+
+	& + h1, & + h2 {
+		margin-top: $base-font-size * 5 / $base-font-size * 1rem; 
+	}
+	& + h3, & + h4, & + h5, & + h6 {
+		margin-top: $base-font-size * 2 / $base-font-size * 1rem; 
+	}
+}
+.post p {
+	&:first-of-type:first-letter {
+	    font-size: 6.8rem;
+    	float: left;
+    	margin: -1.9rem 1rem -2.7rem 0;
+	    line-height: 1.4;
+	    font-family: $main-font;
+	    font-weight: bold;
+	}
+}
+.leadin, p.leadin {
+	font-family: $longform-font;
+	@include typography(leadin,leadin)
+}
+* a {
+	color: inherit;
+}
+h1,h2,h3,h4,h5,h6 {
+	a {
+	}
+	&.text a {
+		text-decoration: underline;
+	}
+}
+a {
+	text-decoration: underline;
+	text-decoration-color: $main-color;
+	position: relative;
+}
+p a, ul a, ol a {
+
+	&:hover:before {
+	    content: attr(href);
+	    position: absolute;
+	    background: $main-color;
+	    color: white;
+	    top: -4.5rem;
+	    font-size: 1.4rem;
+	    text-align: center;
+	    border-radius: 0.2rem;
+	    left: 0;
+	    width: 15rem;
+	    margin-left: calc(50% - 7.5rem);
+	    white-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    padding: 1rem;
+	}
+	&:hover:after {
+		content:'';
+		position:absolute;
+		left: 0;
+		top: -0.7rem;
+		margin-left: calc(50% - 1.5rem);
+		width: 0; 
+		height: 0; 
+		border-left: 1rem solid transparent;
+		border-right: 1rem solid transparent;
+		border-top: 1rem solid $main-color;
+		color: white;
+	}
+}
+ul,ol {
+	@include typography(txtlist,txtlist);
+}
+dl {
+	@include typography(txtlist,txtlist);
+
+	dt {
+
+	}
+
+	dd {
+		margin: 0 0 0 $gutter;
+	}
+}
+address {
+	@include typography(address, address);
+	font-style: normal;
+
+	& + h1, & + h2 {
+		margin-top: $base-font-size * 5 / $base-font-size * 1rem; 
+	}
+}
+time {
+	@include typography(info,inherit);
+}
+summary {
+	@include typography(info,inherit);
+}
+blockquote {
+	@include typography(p,p);
+}
+figcaption {
+	@include typography(info,inherit);
+	font-family: $detail-font;
+}
+pre {
+	@include typography(mono,mono);
+	padding: $gutter;
+	background: #3f3f3f;
+	color: #f8f7f6;
+	display: block;
+	width: 100%;
+	border-radius: 0.3rem;
+}
+code {
+	@include typography(mono,mono);
+}
+/* Class Selectors 
+   ========================================================================== */
+
+/* Emphasis
+   -------------------------------------------------------------------------- */
+.text-muted {
+	opacity: 0.6;
+}
+.text-success {
+	&:before {
+		content:'✓ ';
+	}
+}
+.text-info {
+	font-family: $detail-font;
+	@include typography(info,inherit);
+}
+.text-warning {
+	color: $main-color;
+}
+.text-danger {
+	color: $main-color;
+		&:before, &:after {
+		content: '**';
+	}
+}
+/* Alignment
+   -------------------------------------------------------------------------- */
+.text-left {
+	text-align: left;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
+
+/* Misc
+   -------------------------------------------------------------------------- */
+.trunc {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-bottom: 3rem;
+}
