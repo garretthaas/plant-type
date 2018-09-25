@@ -61,5 +61,5 @@ span.info {
 ( i ): the line-height is converted from the sketch app value to the preferred "unitless" number.
 
 ## Extend
-Font Families are separated from the `@typography(arg,arg);` mixin.
+Font Families are separated from the `@include typography(arg,arg);` mixin.
 Need more or less font-size and line-height variables? Just declare more or remove some.
