@@ -1,8 +1,9 @@
 # Plant Type
 My current typography boilerplate. Intentionally bare with room to grow.
-- Sizes translate from Sketch app by default, but they don't have to.
+
+## Sizes translate from Sketch app by default
 - Convert to easy-to-read REMs
-- 25px = 2.5rem.
+- 25px = 2.5rem
 
 ## Usage example 
 
