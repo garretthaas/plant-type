@@ -20,6 +20,7 @@ $line-heights: ( // from sketch app "Line" spacing property
     'info'    : ( q  ),
 );
 ( i ): declared variables get called as mixin args in your scss.
+```
 
 ```scss
 p {
