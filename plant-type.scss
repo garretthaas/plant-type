@@ -7,18 +7,16 @@
 
 /* Table of Contents
 
-   1. Imports
+   1. Variables
+   - 1.a Colors
+   - 1.b Typography
+   - 1.c Details
 
-   2. Variables
-   - 2.a Colors
-   - 2.b Typography
-   - 2.c Details
+   2. Mixins
+   - 2.a Typography
+   - 2.b Media Query - @author = Hugo Giraudel
 
-   3. Mixins
-   - 3.a Typography
-   - 3.b Media Query - @author = Hugo Giraudel
-
-   4. Styles
+   3. Styles
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -26,27 +24,19 @@
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-
-   1. Imports
-   ========================================================================== */
-
-/* 1.a Your imports 
-   -------------------------------------------------------------------------- */
-
 
 
 /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-   2. Variables
+   1. Variables
    ========================================================================== */
 
-/* 2.a Colors 
+/* 1.a Colors 
    -------------------------------------------------------------------------- */
 $main-color: #B72B18;
 $bg-color: #F8F3F2;
 
-/* 2.b Typography 
+/* 1.b Typography 
    -------------------------------------------------------------------------- */
 $main-font:     sans-serif;
 $longform-font:   serif;
@@ -56,7 +46,7 @@ $base-font-size:  10;
 $gutter: $base-font-size * 3 / $base-font-size * 1rem;
 
 
-/* 2.c Details 
+/* 1.c Details 
    -------------------------------------------------------------------------- */
 $border-radius: 0.3rem;
 
@@ -64,10 +54,10 @@ $border-radius: 0.3rem;
 
 /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-   3. Mixins
+   2. Mixins
    ========================================================================== */
 
-/* 3.a Typography 
+/* 2.a Typography 
    -------------------------------------------------------------------------- */
   $base-font-size:  10; // 10 makes the var sizes match Sketch App font size and line height numbers
   $font-sizes: ( // in pixels
@@ -151,7 +141,7 @@ $border-radius: 0.3rem;
   */
 
 
-/* 3.b Media Query 
+/* 2.b Media Query 
    -------------------------------------------------------------------------- */
 $breakpoints: (
   'small'	  : ( min-width:  550px ),
@@ -183,7 +173,7 @@ $breakpoints: (
 
 
 /* ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-   4. Styles
+   3. Styles
    ========================================================================== */
 
 /* Element Selectors 
@@ -338,15 +328,30 @@ figcaption {
 }
 pre {
 	@include typography(mono,mono);
+}
+code {
+	@include typography(mono,mono);
 	padding: $gutter;
 	background: #3f3f3f;
 	color: #f8f7f6;
 	display: block;
-	width: 100%;
+	width: calc(100% - #[$gutter]);
 	border-radius: 0.3rem;
 }
-code {
-	@include typography(mono,mono);
+small {
+	@include typography(info,inherit);
+}
+strong {
+	font-weight: bold;
+}
+i {
+	font-style: italic;
+}
+b {
+	font-weight: bold;
+}
+small {
+	font-size: smaller;
 }
 /* Class Selectors 
    ========================================================================== */
@@ -357,6 +362,7 @@ code {
 	opacity: 0.6;
 }
 .text-success {
+	color: green;
 	&:before {
 		content:'✓ ';
 	}
@@ -366,10 +372,10 @@ code {
 	@include typography(info,inherit);
 }
 .text-warning {
-	color: $main-color;
+	color: orange;
 }
 .text-danger {
-	color: $main-color;
+	color: red;
 		&:before, &:after {
 		content: '**';
 	}
