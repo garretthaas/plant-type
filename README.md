@@ -9,6 +9,19 @@ My current typography boilerplate. Intentionally bare with room to grow.
 
 ### default usage
 ```scss
+$font-sizes: ( // from sketch app font "Size" property
+    'p'       : ( 21 ),
+    'leadin'  : ( 35 ),
+    'info'    : ( 16 ),
+);
+$line-heights: ( // from sketch app "Line" spacing property
+    'p'       : ( 21 ),
+    'leadin'  : ( 35 ),
+    'info'    : ( q  ),
+);
+( i ): declared variables get called as mixin args in your scss.
+
+```scss
 p {
   @include typography(p,p);
 }
