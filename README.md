@@ -1,13 +1,14 @@
 # Plant Type
 My current typography boilerplate. Intentionally bare with room to grow.
 
-## Sizes translate from Sketch app by default
+- Sizes translate from Sketch app by default
 - Convert to easy-to-read REMs
 - 25px = 2.5rem
 
 ## Usage example 
 
 ### default usage
+
 ```scss
 $font-sizes: ( // from sketch app font "Size" property
     'p'       : ( 21 ),
