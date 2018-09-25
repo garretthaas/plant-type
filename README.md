@@ -1,5 +1,5 @@
 # Plant Type
-My current typography boilerplate. Intentionally bare with room to grow in any application. 
+My current typography boilerplate. Intentionally bare with room to grow.
 - Sizes translate from Sketch app
 - Convert to easy-to-read REMs
 - 25px = 2.5rem.
