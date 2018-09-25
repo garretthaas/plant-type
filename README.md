@@ -36,12 +36,28 @@ p.leadin {
 
 ### inherit line height needed
 ``` scss
-p {
+span.info {
   @include typography(info,n);
 }
 ```
-
 ( i ): If `line-height:inherit;`
+
+## Output
+```scss
+p {
+  font-size: 2.1rem;
+  line-height: 1.380952381;
+}
+p.leadin {
+  font-size: 3.5rem;
+  line-height: 1.2857142857;
+}
+span.info {
+  font-size: 1.6rem;
+  line-height: inherit;
+}
+```
+( i ): the line-height is converted from the sketch app value to the preferred "unitless" number.
 
 ## Extend
 Font Families are separated from the `@typography(arg,arg);` mixin.
